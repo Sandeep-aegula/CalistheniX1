@@ -2,8 +2,12 @@
 
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Medal, Crown } from "lucide-react";
+import { Press_Start_2P } from "next/font/google";
+
+const pressStart2P = Press_Start_2P({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 const LeaderboardPage = () => {
     const { isLoaded, isSignedIn, user } = useUser();
@@ -57,83 +61,66 @@ const LeaderboardPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-[#18191A] p-4 mb-15">
-            <div className="container mx-auto max-w-4xl">
-                <h1 className="text-3xl font-bold text-white mb-8 text-center">Leaderboard</h1>
+        <div className="min-h-screen bg-[#141414] text-white font-press-start p-4 pb-24">
+            {/* Header */}
+            <h1 className="text-center text-4xl mb-8">
+                <span className="text-[#FFD700]">Leader</span>
+                <span className="text-white">Board</span>
+            </h1>
 
-                {/* Top 3 Podium */}
-                <div className="flex justify-center items-end gap-4 mb-8">
-                    {/* Second Place */}
-                    <div className="flex flex-col items-center">
-                        <div className="w-20 h-20 rounded-full bg-gray-700 mb-2 relative flex items-center justify-center">
-                            <span className="text-2xl font-bold text-white">{getInitials(leaderboardData[1]?.name || "Player 2")}</span>
-                            <div className="absolute -top-2 -right-2 bg-gray-400 rounded-full p-1">
-                                <Medal className="w-6 h-6 text-white" />
-                            </div>
-                        </div>
-                        <div className="text-white text-center">
-                            <p className="font-bold">{leaderboardData[1]?.name || "Player 2"}</p>
-                            <p className="text-sm text-gray-400">{leaderboardData[1]?.score || 0} pts</p>
-                        </div>
+            {/* Current Player Card */}
+            <div className="bg-[#1f1f1f] rounded-2xl p-4 mt-6 mb-8">
+                <div className="flex items-center justify-between gap-4">
+                    <div>
+                        <h2 className="text-2xl mb-1">{user?.username || 'Player'}</h2>
+                        <p className="text-[#FFD700] text-sm">Rank: rookie</p>
                     </div>
-
-                    {/* First Place */}
-                    <div className="flex flex-col items-center">
-                        <div className="w-24 h-24 rounded-full bg-yellow-600 mb-2 relative flex items-center justify-center">
-                            <span className="text-3xl font-bold text-white">{getInitials(leaderboardData[0]?.name || "Player 1")}</span>
-                            <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-full p-1">
-                                <Crown className="w-6 h-6 text-white" />
-                            </div>
-                        </div>
-                        <div className="text-white text-center">
-                            <p className="font-bold">{leaderboardData[0]?.name || "Player 1"}</p>
-                            <p className="text-sm text-gray-400">{leaderboardData[0]?.score || 0} pts</p>
-                        </div>
-                    </div>
-
-                    {/* Third Place */}
-                    <div className="flex flex-col items-center">
-                        <div className="w-20 h-20 rounded-full bg-amber-700 mb-2 relative flex items-center justify-center">
-                            <span className="text-2xl font-bold text-white">{getInitials(leaderboardData[2]?.name || "Player 3")}</span>
-                            <div className="absolute -top-2 -right-2 bg-amber-600 rounded-full p-1">
-                                <Trophy className="w-6 h-6 text-white" />
-                            </div>
-                        </div>
-                        <div className="text-white text-center">
-                            <p className="font-bold">{leaderboardData[2]?.name || "Player 3"}</p>
-                            <p className="text-sm text-gray-400">{leaderboardData[2]?.score || 0} pts</p>
-                        </div>
+                    <div className="flex gap-2">
+                        <div className="bg-[#2D2D2D] px-3 py-1 rounded-lg text-sm">Lvl 0</div>
+                        <div className="bg-[#2D2D2D] px-3 py-1 rounded-lg text-sm">XP 0</div>
                     </div>
                 </div>
-
-                {/* Leaderboard List */}
-                <Card className="bg-gray-800 border-gray-700">
-                    <CardHeader>
-                        <CardTitle className="text-white">Global Rankings</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="space-y-4">
-                            {leaderboardData.map((player, index) => (
-                                <div key={player.id} className="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
-                                    <div className="flex items-center gap-4">
-                                        <span className="text-white font-bold w-8">{index + 1}</span>
-                                        <div className={`w-10 h-10 rounded-full ${getRandomColor(index)} flex items-center justify-center`}>
-                                            <span className="text-sm font-bold text-white">{getInitials(player.name)}</span>
-                                        </div>
-                                        <div>
-                                            <p className="text-white font-medium">{player.name}</p>
-                                            <p className="text-sm text-gray-400">{player.streak} day streak</p>
-                                        </div>
-                                    </div>
-                                    <div className="text-white font-bold">{player.score} pts</div>
-                                </div>
-                            ))}
-                        </div>
-                    </CardContent>
-                </Card>
             </div>
+
+            {/* Leaderboard List */}
+            <div className="space-y-4">
+                {leaderboardData.map((player, index) => (
+                    <div 
+                        key={player.id} 
+                        className={`
+                            flex items-center justify-between p-4 rounded-2xl
+                            ${index === 0 ? 'bg-gradient-to-r from-[#FFD700] to-[#916f15]' : 'bg-[#1f1f1f]'}
+                        `}
+                    >
+                        <div className="flex items-center gap-4">
+                            <span className="text-xl w-8">{index + 1}</span>
+                            <div>
+                                <h3 className="text-xl mb-1">{player.name}</h3>
+                                <p className="text-[#FFD700] text-sm">Rank: rookie</p>
+                            </div>
+                        </div>
+                        <div className="flex flex-col items-end">
+                            <div className="bg-[#2D2D2D] px-3 py-1 rounded-lg text-sm mb-1">
+                                Lvl {Math.floor(player.score / 1000)}
+                            </div>
+                            <div className="bg-[#2D2D2D] px-3 py-1 rounded-lg text-sm">
+                                XP {player.score}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Navigation - Unchanged */}
+            <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center bg-[#141414] py-4">
+                <div className="w-10 h-10 rounded-full bg-[#2D2D2D] flex items-center justify-center">🏠</div>
+                <div className="w-10 h-10 rounded-full bg-[#2D2D2D] flex items-center justify-center">📈</div>
+                <div className="w-16 h-16 rounded-full bg-gradient-to-b from-[#FFD700] to-[#916f15] flex items-center justify-center -mt-8">🏆</div>
+                <div className="w-10 h-10 rounded-full bg-[#2D2D2D] flex items-center justify-center">📷</div>
+                <div className="w-10 h-10 rounded-full bg-[#2D2D2D] flex items-center justify-center">👤</div>
+            </nav>
         </div>
     );
 };
 
-export default LeaderboardPage; 
+export default LeaderboardPage;

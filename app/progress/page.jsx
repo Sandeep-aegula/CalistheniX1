@@ -9,6 +9,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Press_Start_2P } from "next/font/google";
+
+const pressStart2P = Press_Start_2P({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-press-start'
+});
 
 const WorkoutsPage = () => {
     const { isLoaded, isSignedIn, user } = useUser();
@@ -138,8 +146,9 @@ const WorkoutsPage = () => {
 
     return (
         <div className="min-h-screen ">
-            <Header />
-            
+            <h1 className="text-3xl font-bold mx-10  mt-10">Progress</h1>
+              <Header />
+        
             <main className="container mx-auto px-4 py-8  mb-16">
                
 

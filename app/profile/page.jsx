@@ -1,5 +1,5 @@
 'use client';
-import { press_2_start } from "next/font/google";
+import { Press_Start_2P } from "next/font/google";
 import Header from '@/components/header';
 import { useUser , } from "@clerk/nextjs";
 import { getCurrentMissions } from '@/_actions/MissionActions';
@@ -10,7 +10,12 @@ import { Badge } from "@/components/ui/badge";
 import Image from 'next/image';
 import welcome from '@/public/images/profile.png';
 import strength from '@/public/images/strength.png';
-
+const pressStart2P = Press_Start_2P({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-press-start'
+});
 const ProfileContent = () => {
     const { isLoaded, isSignedIn, user } = useUser();
     const [missions, setMissions] = useState([]);
