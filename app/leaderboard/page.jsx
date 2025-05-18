@@ -76,8 +76,8 @@ const LeaderboardPage = () => {
                         <p className="text-[#FFD700] text-sm">Rank: rookie</p>
                     </div>
                     <div className="flex gap-2">
-                        <div className="bg-[#2D2D2D] px-3 py-1 rounded-lg text-sm">Lvl 0</div>
-                        <div className="bg-[#2D2D2D] px-3 py-1 rounded-lg text-sm">XP 0</div>
+                        <div className="bg-[#2D2D2D] px-3 py-1 rounded-lg text-sm">Lvl 1</div>
+                        <div className="bg-[#2D2D2D] px-3 py-1 rounded-lg text-sm">XP 1700</div>
                     </div>
                 </div>
             </div>
@@ -111,14 +111,14 @@ const LeaderboardPage = () => {
                 ))}
             </div>
 
-            {/* Navigation - Unchanged */}
+            {/* Navigation - Unchanged
             <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center bg-[#141414] py-4">
                 <div className="w-10 h-10 rounded-full bg-[#2D2D2D] flex items-center justify-center">🏠</div>
                 <div className="w-10 h-10 rounded-full bg-[#2D2D2D] flex items-center justify-center">📈</div>
                 <div className="w-16 h-16 rounded-full bg-gradient-to-b from-[#FFD700] to-[#916f15] flex items-center justify-center -mt-8">🏆</div>
                 <div className="w-10 h-10 rounded-full bg-[#2D2D2D] flex items-center justify-center">📷</div>
                 <div className="w-10 h-10 rounded-full bg-[#2D2D2D] flex items-center justify-center">👤</div>
-            </nav>
+            </nav> */}
         </div>
     );
 };

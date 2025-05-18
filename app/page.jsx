@@ -6,6 +6,14 @@ import welcome from "@/public/images/welcome.png";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { Press_Start_2P } from "next/font/google";
+
+const pressStart2P = Press_Start_2P({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-press-start'
+});
 
 export default function WelcomePage() {
   const { isLoaded, isSignedIn } = useUser();
@@ -28,7 +36,7 @@ export default function WelcomePage() {
     return (
       <div className="flex flex-col items-center justify-end pb-20 min-h-screen  bg-[#18191A]">
         <h1 className="text-4xl md:text-5xl font-extrabold font-mono text-white mb-2">
-          Calistheni<span className="text-yellow-400">X</span>
+         <span className={pressStart2P.className}>W</span>elcome to Calistheni<span className="text-yellow-400">X</span>
         </h1>
         <p className="text-gray-300 mb-8 text-lg">The Game of Gains</p>
         <Image

@@ -230,7 +230,7 @@ const ProfileContent = () => {
 
 const ProfilePage = () => {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div className="min-h-screen bg-[#18191A] flex items-center justify-center text-white">Loading...</div>}>
             <ProfileContent />
         </Suspense>
     );
